@@ -1,0 +1,491 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>POSD System</title>
+    <style>
+        [data-bs-theme="custom"] {
+            --bs-body-bg: #F2F3F4;
+            --bs-body-color: #000000;
+            --bs-link-color: #0d6efd;
+            --bs-link-hover-color: #0a58ca;
+            background-color: var(--bs-body-bg);
+            color: var(--bs-body-color);
+        }
+
+        #modeIcon {
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .rotate-in {
+            transform: rotate(360deg);
+            opacity: 1;
+        }
+
+        .rotate-out {
+            transform: rotate(0deg);
+            opacity: 0;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- BARRA DI NAVIGAZIONE -->
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top" style="background: #0F52BA;">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav me-auto">
+                    <a class="navbar-brand" href="index.html">
+                        <h3>POSD System</h3>
+                    </a>
+                    <li class="nav-item me-5">
+
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item me-4">
+                        <div class="form-check form-switch my-2">
+                            <input class="form-check-input" type="checkbox" id="themeSwitch" checked>
+                            <label for="themeSwitch" id="checklabel">
+                                <i class="fas fa-moon mt-1" id="modeIcon"></i>
+                            </label>
+                        </div>
+                    </li>
+                    <li class="nav-item me-2">
+                        <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#modalFeedback">
+                            Invia un feedback sulla PKB
+                        </button>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a class="nav-link active" href="http://localhost:1337/admin/auth/login" target="_blank">
+                            Amministratore PKB
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MODAL FEEDBACK -->
+    <div class="modal fade" id="modalFeedback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Feddback sulla Privacy Knowledge Base</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        id="btnClose"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <textarea class="form-control" aria-label="With textarea" id="feedbackInput"></textarea>
+                    </div>
+                    <br>
+                    <b class="text-success" id="textSuccesso"></b>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" style="background:#0F52BA;color: white;"
+                        id="btnInvio">Invia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br>
+
+    <!-- TESTO DI BENVENUTO -->
+    <h1>
+        <p align="center">Benvenuto !</p>
+    </h1>
+    <p style="margin:20px;" align="center">Questa applicazione web ha come obbiettivo:
+        <dd style="margin:20px" align="center"> supportare gli sviluppatori nella progettazione e
+            reingegnerizzazione di sistemi orientati alla privacy e sicurezza </dd>
+        <dd style="margin:20px" align="center">e supportare le aziende nella definizione di processi compliance al
+            GDPR
+        </dd>
+    </p>
+    <div class="container-fluid">
+        <!-- 1 E 2 + NEWS -->
+        <div class="row">
+            <!-- PRIMA E SECONDA FUNZIONALITA' -->
+            <div class="col-8">
+                <!-- CARD 1° FUNZIONALITA' -->
+                <div class="card" style="margin: 20px">
+                    <h5 class="card-header">1° Funzionalità</h5>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"> Questa sezione può essere utilizzata per visualizzare i Privacy Pattern
+                            assoaciati ad
+                            una determinata vulnerabilità CWE.
+                        </p>
+                        <div class="mb-3">
+                            <form>
+                                <label for="formGroupExampleInput" class="form-label">Vulnerabilità CWE</label>
+                                <select class="form-select" id="select1" aria-label="Disabled select example">
+                                </select>
+                                <br><button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-toggle="modal" data-bs-target="#modal1" id="visualizza1">
+                                    Visualizza</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- MODAL 1A FUNZIONALITA' -->
+                <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Pattern associati</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modal-body1">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-dismiss="modal">Chiudi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2° FUNZIONALITA' -->
+                <div class="card" style="margin: 20px">
+                    <h5 class="card-header">2° Funzionalità</h5>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"> Questa sezione può essere utilizzata per visualizzare un Esempio di
+                            applicazione di un
+                            Pattern specificato .
+                        </p>
+                        <div class="mb-3">
+                            <form>
+                                <label for="formGroupExampleInput" class="form-label">Pattern</label>
+                                <select class="form-select" aria-label="Disabled select example" id="select2">
+                                </select>
+                                <br><button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-toggle="modal" data-bs-target="#modal2" id="visualizza2">
+                                    Visualizza</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- MODAL 2A FUNZIONALITA' -->
+                <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Esempi associati</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modal-body2">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-dismiss="modal">Chiudi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- CARD NEWS-->
+            <div class="col p-0">
+                <div class="border rounded p-0 card" style="margin: 20px 30px 20px 20px;">
+                    <div class="card-header">
+                        <nav class="navbar p-0" style="margin: 0px;">
+                            <div class="container-fluid p-0" style="height: 33px;">
+                                <h5 class="navbar-brand pb-3">News Sulla Pkb</h5>
+                                <form class="d-flex" role="search">
+                                    <button class="btn p-2 mb-1" style="background:#0F52BA;color: white;"
+                                        type="submit"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                            fill="currentColor" class="bi bi-arrow-clockwise" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2z" />
+                                            <path
+                                                d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466" />
+                                        </svg></button>
+                                </form>
+                            </div>
+                        </nav>
+                    </div>
+                    <div class="card-body overflow-auto" id="news-body" style="max-height: 510px;">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- ALTRE 5 -->
+        <div class="row">
+            <div class="col">
+                <!-- CARD 3A FUNZIONALITA' -->
+                <div class="card" style="margin: 20px">
+                    <h5 class="card-header">3° Funzionalità</h5>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"> Questa sezione può essere utilizzata per visualizzare un Pattern di un
+                            determinato Articolo GDPR.
+                        </p>
+                        <div class="mb-3">
+                            <form>
+                                <label for="formGroupExampleInput" class="form-label">Articolo GDPR</label>
+                                <select class="form-select" id="select3">
+                                </select>
+                                <br><button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-toggle="modal" data-bs-target="#modal3" id="visualizza3">
+                                    Visualizza</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- MODAL 3A FUNZIONALITA' -->
+                <div class="modal fade" id="modal3" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Pattern associati</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modal-body3">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-dismiss="modal">Chiudi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 4A FUNZIONALITA' -->
+                <div class="card" style="margin: 20px">
+                    <h5 class="card-header">4° Funzionalità</h5>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"> Questa sezione può essere utilizzata per visualizzare gli elementi della
+                            Privacy
+                            Knowledge Base associati ad un Pattern
+                        </p>
+                        <div class="mb-3">
+                            <form>
+                                <label for="formGroupExampleInput" class="form-label">Pattern</label>
+                                <select class="form-select" aria-label="Disabled select example" id="select4">
+                                </select>
+                                <br><button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-toggle="modal" data-bs-target="#modal4" id="visualizza4">
+                                    Visualizza</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- MODAL 4A FUNZIONALITA' -->
+                <div class="modal fade" id="modal4" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Elementi della PKB associati</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modal-body4">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-dismiss="modal">Chiudi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 5A FUNZIONALITA' -->
+                <div class="card" style="margin: 20px">
+                    <h5 class="card-header">5° Funzionalità</h5>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"> Questa sezione può essere utilizzata per visualizzare i principi
+                            Privicy By Design associati ad una determinata fase ISO 9241-210
+                        </p>
+                        <div class="mb-3">
+                            <form>
+                                <label for="formGroupExampleInput" class="form-label">Fase ISO 9241-210</label>
+                                <select class="form-select" aria-label="Disabled select example" id="select5">
+                                </select>
+                                <br><button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-toggle="modal" data-bs-target="#modal5" id="visualizza5">
+                                    Visualizza</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- MODAL 5A FUNZIONALITA' -->
+                <div class="modal fade" id="modal5" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Principi Privacy By Design associati
+                                </h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modal-body5">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-dismiss="modal">Chiudi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 6A FUNZIONALITA' -->
+                <div class="card" style="margin: 20px">
+                    <h5 class="card-header">6° Funzionalità</h5>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"> Questa sezione può essere utilizzata per visualizzare le fasi ISO 9241-210
+                            associate
+                            ad un determinato componente MVC
+                        </p>
+                        <div class="mb-3">
+                            <form>
+                                <label for="formGroupExampleInput" class="form-label">Componente MVC</label>
+                                <select class="form-select" aria-label="Disabled select example" id="select6">
+                                </select>
+                                <br><button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-toggle="modal" data-bs-target="#modal6" id="visualizza6">
+                                    Visualizza</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- MODAL 6A FUNZIONALITA' -->
+                <div class="modal fade" id="modal6" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Fasi ISO 9241-210 associate</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modal-body6">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-dismiss="modal">Chiudi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 7A FUNZIONALITA' -->
+                <div class="card" style="margin: 20px">
+                    <h5 class="card-header">7° Funzionalità</h5>
+                    <div class="card-body">
+                        <h5 class="card-title"></h5>
+                        <p class="card-text"> Questa sezione può essere utilizzata per visualizzare le vulnerabilità CWE
+                            associate
+                            ad un determinato articolo GDPR
+                        </p>
+                        <div class="mb-3">
+                            <form>
+                                <label for="formGroupExampleInput" class="form-label">Articolo GDPR</label>
+                                <select class="form-select" aria-label="Disabled select example" id="select7">
+                                </select>
+                                <br><button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-toggle="modal" data-bs-target="#modal7" id="visualizza7">
+                                    Visualizza</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- MODAL 7A FUNZIONALITA' -->
+                <div class="modal fade" id="modal7" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Vulnerabilità CWE associate</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body" id="modal-body7">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" style="background:#0F52BA;color: white;"
+                                    data-bs-dismiss="modal">Chiudi</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPT BOOTSTRAP-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+    <!-- SCRIPT GESTIONE -->
+    <script type="text/javascript" src="GestioneNews.js"></script>
+    <script type="text/javascript" src="GestioneFunzionalità.js"></script>
+    <script type="text/javascript" src="GestioneFeedback.js"></script>
+    <!-- SCRIPT DARK MODE -->
+    <script>
+        let checkbox = document.getElementById("themeSwitch")
+        let label = document.getElementById("modeIcon")
+        let icon
+        checkbox.addEventListener("click", () => {
+            if (checkbox.checked) {
+                modeIcon.classList.remove('fa-sun', 'rotate-in');
+                modeIcon.classList.add('rotate-out');
+                setTimeout(() => {
+                    modeIcon.classList.remove('rotate-out');
+                    modeIcon.classList.add('fa-moon', 'rotate-in');
+                }, 100);
+            } else {
+                modeIcon.classList.remove('fa-moon', 'rotate-in');
+                modeIcon.classList.add('rotate-out');
+                setTimeout(() => {
+                    modeIcon.classList.remove('rotate-out');
+                    modeIcon.classList.add('fa-sun', 'rotate-in');
+                }, 100);
+            }
+        })
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const htmlElement = document.documentElement;
+            const themeSwitch = document.getElementById('themeSwitch');
+
+            // Set the default theme based on local storage, default to 'custom'
+            const currentTheme = localStorage.getItem('bsTheme') || 'custom';
+            htmlElement.setAttribute('data-bs-theme', currentTheme);
+            themeSwitch.checked = currentTheme === 'dark';
+
+            themeSwitch.addEventListener('change', function () {
+                const nextTheme = themeSwitch.checked ? 'dark' : 'custom';
+                htmlElement.setAttribute('data-bs-theme', nextTheme);
+                localStorage.setItem('bsTheme', nextTheme);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
